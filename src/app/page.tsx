@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -9,6 +10,41 @@ import {
   FaReddit,
   FaDiscord,
 } from "react-icons/fa";
+import type { IconType } from "react-icons";
+import Icon from "../components/Icon";
+
+interface SocialLink {
+  href: string;
+  label: string;
+  icon: IconType;
+}
+
+const socialLinks: SocialLink[] = [
+  { icon: FaGithub, href: "https://github.com/o-gkmn", label: "GitHub" },
+  {
+    icon: FaLinkedin,
+    href: "https://linkedin.com/in/ozgurgokmen",
+    label: "LinkedIn",
+  },
+  { icon: FaTwitter, href: "https://twitter.com/o_gkmn", label: "Twitter" },
+  {
+    icon: FaInstagram,
+    href: "https://instagram.com/o_gkmn",
+    label: "Instagram",
+  },
+  { icon: FaYoutube, href: "https://youtube.com/@o_gkmn", label: "YouTube" },
+  {
+    icon: FaStackOverflow,
+    href: "https://stackoverflow.com/users/13489994/Özgür",
+    label: "Stack Overflow",
+  },
+  { icon: FaReddit, href: "https://reddit.com/u/o_gkmn", label: "Reddit" },
+  {
+    icon: FaDiscord,
+    href: "https://discord.com/users/o_gkmn",
+    label: "Discord",
+  },
+];
 
 export default function Home() {
   return (
@@ -52,61 +88,13 @@ export default function Home() {
 
             {/* Social Icons */}
             <div className="grid grid-cols-4 gap-6 max-w-md mx-auto">
-              {[
-                {
-                  icon: FaGithub,
-                  href: "https://github.com/o-gkmn",
-                  label: "GitHub",
-                },
-                {
-                  icon: FaLinkedin,
-                  href: "https://linkedin.com/in/ozgurgokmen",
-                  label: "LinkedIn",
-                },
-                {
-                  icon: FaTwitter,
-                  href: "https://twitter.com/o_gkmn",
-                  label: "Twitter",
-                },
-                {
-                  icon: FaInstagram,
-                  href: "https://instagram.com/o_gkmn",
-                  label: "Instagram",
-                },
-                {
-                  icon: FaYoutube,
-                  href: "https://youtube.com/@o_gkmn",
-                  label: "YouTube",
-                },
-                {
-                  icon: FaStackOverflow,
-                  href: "https://stackoverflow.com/users/13489994/Özgür",
-                  label: "Stack Overflow",
-                },
-                {
-                  icon: FaReddit,
-                  href: "https://reddit.com/u/o_gkmn",
-                  label: "Reddit",
-                },
-                {
-                  icon: FaDiscord,
-                  href: "https://discord.com/users/o_gkmn",
-                  label: "Discord",
-                },
-              ].map((social) => (
-                <a
+              {socialLinks.map((social) => (
+                <Icon
                   key={social.label}
+                  icon={social.icon}
+                  label={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative"
-                  aria-label={social.label}
-                >
-                  <div className="relative p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/20 group-hover:to-pink-500/20 rounded-xl transition-all duration-300"></div>
-                    <social.icon className="relative text-2xl text-white/70 group-hover:text-white transition-colors duration-300" />
-                  </div>
-                </a>
+                />
               ))}
             </div>
 
